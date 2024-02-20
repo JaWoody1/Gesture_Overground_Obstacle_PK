@@ -50,13 +50,8 @@ for gg=1:2
         coordata(ii,:) = trial_num(ii+Trajstart+4,:); % redefining the coordinate data for easy access and reference...according to how it is stored in the excel sheet
     end
 
-%     %Create matrix of all single task data 
-%     STWalk = zeros(length(coordata(:, 1)), 5);
-%     % First Column = frame numbers
-%     STWalk(:, 1) = coordata(:,1);
-%     STWalk(:, 
-    
-   
+
+
    [coordatarows, coordatacols] = size(coordata);
     for ii = 1:coordatacols
         newtextb(1,ii) =(trial_txt(Trajstart+2,ii));
@@ -77,46 +72,28 @@ end
     
     % *************************************************************************
     % Separate out the arrays of interest (Finger Marker)
-    for ii = 1:coordatacols
-        lfin = strmatch('LFIN',trial_txt(Trajstart+2,ii));  
-        if lfin == 1
-            LFINzcol = ii+2;
-            LFINxcol = ii;
-            break
-        end
-    end
+    
+    column_length = 1:coordatacols;
+
+    LFINxcol = get_marker('LFIN', 'x',column_length,Trajstart,trial_txt);
+    LFINzcol = get_marker('LFIN', 'z',column_length,Trajstart,trial_txt);
     
     
     % separate individual trajectory columns fo interest 
-    for ii = 1:coordatacols
-        rfin = strmatch('RFIN',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            RFINzcol = ii+2;
-            RFINxcol = ii;
-            break
-        end
-    end
+    RFINxcol = get_marker('RFIN', 'x',column_length,Trajstart,trial_txt);
+    RFINycol = get_marker('RFIN', 'y',column_length,Trajstart,trial_txt);
+    RFINzcol = get_marker('RFIN', 'z',column_length,Trajstart,trial_txt);
     
     %shoulder markers 
-    for ii = 1:coordatacols
-        rfin = strmatch('RSHO',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            RSHOzcol = ii+2;
-            RSHOycol = ii+1;
-            RSHOxcol = ii;
-            break
-        end
-    end
+
+    RSHOxcol = get_marker('RSHO', 'x',column_length,Trajstart,trial_txt);
+    RSHOycol = get_marker('RSHO', 'y',column_length,Trajstart,trial_txt);
+    RSHOzcol = get_marker('RSHO', 'z',column_length,Trajstart,trial_txt);
+
+    LSHOxcol = get_marker('LSHO', 'x',column_length,Trajstart,trial_txt);
+    LSHOycol = get_marker('LSHO', 'y',column_length,Trajstart,trial_txt);
+    LSHOzcol = get_marker('LSHO', 'z',column_length,Trajstart,trial_txt);
     
-    for ii = 1:coordatacols
-        rfin = strmatch('LSHO',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            LSHOzcol = ii+2;
-            LSHOycol = ii+1;
-            LSHOxcol = ii;
-            break
-        end
-    end
     
     %wrist markers
     for ii = 1:coordatacols
@@ -220,8 +197,8 @@ end
 %         LSWvector = Lshoudler - LWrist;
 %         RSWvector = RShoulder - RWrist; 
         % calculate the distance between the shoulder and wrist markers 
-        Ldist(ii,1) = [sqrt(((LShoulder(ii,1)-LWrist(ii,1))^2) + ((LShoulder(ii,2)-LWrist(ii,2))^2) + ((LShoulder(ii,3)-LWrist(ii,3))^2))];
-        Rdist(ii,1) = [sqrt(((RShoulder(ii,1)-RWrist(ii,1))^2) + ((RShoulder(ii,2)-RWrist(ii,2))^2) + ((RShoulder(ii,3)-RWrist(ii,3))^2))];
+        Ldist(ii,1) = vector(LShoulder(ii,1), LWrist(ii,1),LShoulder(ii,2), LWrist(ii,2),LShoulder(ii,3), LWrist(ii,3));
+        Rdist(ii,1) = vector(RShoulder(ii,1), RWrist(ii,1),RShoulder(ii,2), RWrist(ii,2),RShoulder(ii,3), RWrist(ii,3));
 %         
         
      end
