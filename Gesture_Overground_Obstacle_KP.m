@@ -96,55 +96,33 @@ end
     
     
     %wrist markers
-    for ii = 1:coordatacols
-        rfin = strmatch('LWRA',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            LWRAzcol = ii+2;
-            LWRAycol = ii+1;
-            LWRAxcol = ii;
-            break
-        end
-    end
+
+    LWRAxcol = get_marker('LWRA', 'x',column_length,Trajstart,trial_txt);
+    LWRAycol = get_marker('LWRA', 'y',column_length,Trajstart,trial_txt);
+    LWRAzcol = get_marker('LWRA', 'z',column_length,Trajstart,trial_txt);
+
+    LWRBxcol = get_marker('LWRB', 'x',column_length,Trajstart,trial_txt);
+    LWRBycol = get_marker('LWRB', 'y',column_length,Trajstart,trial_txt);
+    LWRBzcol = get_marker('LWRB', 'z',column_length,Trajstart,trial_txt);
     
-    for ii = 1:coordatacols
-        rfin = strmatch('LWRB',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            LWRBzcol = ii+2;
-            LWRBycol = ii+1;
-            LWRBxcol = ii;
-            break
-        end
-    end
+    RWRAxcol = get_marker('RWRA', 'x',column_length,Trajstart,trial_txt);
+    RWRAycol = get_marker('RWRA', 'y',column_length,Trajstart,trial_txt);
+    RWRAzcol = get_marker('RWRA', 'z',column_length,Trajstart,trial_txt);
+
+    RWRBxcol = get_marker('RWRB', 'x',column_length,Trajstart,trial_txt);
+    RWRBycol = get_marker('RWRB', 'y',column_length,Trajstart,trial_txt);
+    RWRBzcol = get_marker('RWRB', 'z',column_length,Trajstart,trial_txt);
     
     
-    for ii = 1:coordatacols
-        rfin = strmatch('RWRA',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            RWRAzcol = ii+2;
-            RWRAycol = ii+1;
-            RWRAxcol = ii;
-            break
-        end
-    end
-    
-    for ii = 1:coordatacols
-        rfin = strmatch('RWRB',trial_txt(Trajstart+2,ii));
-        if rfin == 1
-            RWRBzcol = ii+2;
-            RWRBycol = ii+1;
-            RWRBxcol = ii;
-            break
-        end
-    end
-  
 %     %Create matrix for LWrist, LShoulder, RWrist, RShoulder
-        LWrist = zeros(length(coordata(:, 1)), 3);
-        RWrist = zeros(length(coordata(:, 1)), 3);
-        LShoulder = zeros(length(coordata(:, 1)), 3);
-        RShoulder = zeros(length(coordata(:, 1)), 3);
+    
+    LWrist = create_matrix(coordata, 3);
+    RWrist = create_matrix(coordata, 3);
+    LShoulder = create_matrix(coordata, 3);
+    RShoulder = create_matrix(coordata, 3);
         
     
-    
+    %RWrist = zeros(length(coordata(:, 1)), 3);
     
     
 % do something else     
