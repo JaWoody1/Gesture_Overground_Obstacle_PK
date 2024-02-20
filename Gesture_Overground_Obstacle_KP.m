@@ -124,37 +124,78 @@ end
     
     %RWrist = zeros(length(coordata(:, 1)), 3);
     
+
+    %get row data
+    lfinx = get_data_from_rows(coordata,coordatarows,LFINxcol);
+    lfinz = get_data_from_rows(coordata,coordatarows,LFINzcol);
+
+    rfinx = get_data_from_rows(coordata,coordatarows,RFINxcol);
+    rfinz = get_data_from_rows(coordata,coordatarows,RFINzcol);
+
+    lshox = get_data_from_rows(coordata,coordatarows,LSHOxcol);
+    lshoy = get_data_from_rows(coordata,coordatarows,LSHOycol);
+    lshoz = get_data_from_rows(coordata,coordatarows,LSHOzcol);
+    
+    rshox = get_data_from_rows(coordata,coordatarows,RSHOxcol);
+    rshoy = get_data_from_rows(coordata,coordatarows,RSHOycol);
+    rshoz = get_data_from_rows(coordata,coordatarows,RSHOzcol);
+    
+    lwrax
+    lwrbx
+    LWristmidx
+
+    lwray
+    lwrby
+    LWristmidy
+    
+    lwraz
+    lwrbz
+    LWristmidz
+
+    rwrax
+    rwrbx
+    RWristmidx
+
+    rwray
+    rwrby
+    RWristmidy
+    
+    rwraz
+    rwrbz
+    RWristmidz
+
+    
     
 % do something else     
-     for ii = 1:coordatarows % separate individual trajectory columns of interest
-        lfinz(ii,1) = coordata(ii, LFINzcol);
-        rfinz(ii,1) = coordata(ii, RFINzcol);
-        lfinx(ii,1) = coordata(ii, LFINxcol);
-        rfinx(ii,1) = coordata(ii, RFINxcol);
-        lshoz(ii,1) = coordata(ii, LSHOzcol);
-        rshoz(ii,1) = coordata(ii, RSHOzcol);
-        lshox(ii,1) = coordata(ii, LSHOxcol);
-        rshox(ii,1) = coordata(ii, RSHOxcol);
-        lshoy(ii,1) = coordata(ii, LSHOycol);
-        rshoy(ii,1) = coordata(ii, RSHOycol);
-        lwraz(ii,1) = coordata(ii, LWRAzcol);
-        lwrbz(ii,1) = coordata(ii, LWRBzcol);
-        LWristmidz(ii, 1) = ((lwraz(ii,1) + lwrbz(ii,1))/2);
-        lwrax(ii,1) = coordata(ii, LWRAxcol);
-        lwrbx(ii,1) = coordata(ii, LWRBxcol);
-        LWristmidx(ii, 1) = ((lwrax(ii,1) + lwrbx(ii,1))/2);
-        lwray(ii,1) = coordata(ii, LWRAycol);
-        lwrby(ii,1) = coordata(ii, LWRBycol);
-        LWristmidy(ii, 1) = ((lwray(ii,1) + lwrby(ii,1))/2);
-        rwraz(ii,1) = coordata(ii, RWRAzcol);
-        rwrbz(ii,1) = coordata(ii, RWRBzcol);
-        RWristmidz(ii, 1) = ((rwraz(ii,1) + rwrbz(ii,1))/2);
-        rwrax(ii,1) = coordata(ii, RWRAxcol);
-        rwrbx(ii,1) = coordata(ii, RWRBxcol);
-        RWristmidx(ii, 1) = ((rwrax(ii,1) + rwrbx(ii,1))/2);
-        rwray(ii,1) = coordata(ii, RWRAycol);
-        rwrby(ii,1) = coordata(ii, RWRBycol);
-        RWristmidy(ii, 1) = ((rwray(ii,1) + rwrby(ii,1))/2);
+     % for ii = 1:coordatarows % separate individual trajectory columns of interest
+     %    lfinz(ii,1) = coordata(ii, LFINzcol);
+     %    rfinz(ii,1) = coordata(ii, RFINzcol);
+     %    lfinx(ii,1) = coordata(ii, LFINxcol);
+     %    %rfinx(ii,1) = coordata(ii, RFINxcol);
+     %    lshoz(ii,1) = coordata(ii, LSHOzcol);
+     %    rshoz(ii,1) = coordata(ii, RSHOzcol);
+     %    lshox(ii,1) = coordata(ii, LSHOxcol);
+     %    rshox(ii,1) = coordata(ii, RSHOxcol);
+     %    lshoy(ii,1) = coordata(ii, LSHOycol);
+     %    rshoy(ii,1) = coordata(ii, RSHOycol);
+     %    lwraz(ii,1) = coordata(ii, LWRAzcol);
+     %    lwrbz(ii,1) = coordata(ii, LWRBzcol);
+     %    LWristmidz(ii, 1) = ((lwraz(ii,1) + lwrbz(ii,1))/2);
+     %    lwrax(ii,1) = coordata(ii, LWRAxcol);
+     %    lwrbx(ii,1) = coordata(ii, LWRBxcol);
+     %    LWristmidx(ii, 1) = ((lwrax(ii,1) + lwrbx(ii,1))/2);
+     %    lwray(ii,1) = coordata(ii, LWRAycol);
+     %    lwrby(ii,1) = coordata(ii, LWRBycol);
+     %    LWristmidy(ii, 1) = ((lwray(ii,1) + lwrby(ii,1))/2);
+     %    rwraz(ii,1) = coordata(ii, RWRAzcol);
+     %    rwrbz(ii,1) = coordata(ii, RWRBzcol);
+     %    RWristmidz(ii, 1) = ((rwraz(ii,1) + rwrbz(ii,1))/2);
+     %    rwrax(ii,1) = coordata(ii, RWRAxcol);
+     %    rwrbx(ii,1) = coordata(ii, RWRBxcol);
+     %    RWristmidx(ii, 1) = ((rwrax(ii,1) + rwrbx(ii,1))/2);
+     %    rwray(ii,1) = coordata(ii, RWRAycol);
+     %    rwrby(ii,1) = coordata(ii, RWRBycol);
+     %    RWristmidy(ii, 1) = ((rwray(ii,1) + rwrby(ii,1))/2);
      
         
         
