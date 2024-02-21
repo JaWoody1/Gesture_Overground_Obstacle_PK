@@ -114,7 +114,7 @@ end
     RWRBzcol = get_marker('RWRB', 'z',column_length,Trajstart,trial_txt);
     
     
-%     %Create matrix for LWrist, LShoulder, RWrist, RShoulder
+    %Create matrix for LWrist, LShoulder, RWrist, RShoulder
     
     LWrist = create_matrix(coordata, 3);
     RWrist = create_matrix(coordata, 3);
@@ -140,87 +140,56 @@ end
     rshoy = get_data_from_rows(coordata,coordatarows,RSHOycol);
     rshoz = get_data_from_rows(coordata,coordatarows,RSHOzcol);
     
-    lwrax
-    lwrbx
-    LWristmidx
+    lwrax = get_data_from_rows(coordata,coordatarows,LWRAxcol);
+    lwrbx = get_data_from_rows(coordata,coordatarows,LWRBxcol);
+    LWristmidx = midpoint(lwrax,lwrbx);
 
-    lwray
-    lwrby
-    LWristmidy
+    lwray = get_data_from_rows(coordata,coordatarows,LWRAycol);
+    lwrby = get_data_from_rows(coordata,coordatarows,LWRBycol);
+    LWristmidy = midpoint(lwray, lwrby);
     
-    lwraz
-    lwrbz
-    LWristmidz
+    lwraz = get_data_from_rows(coordata,coordatarows,LWRAzcol);
+    lwrbz = get_data_from_rows(coordata,coordatarows,LWRBzcol);
+    LWristmidz = midpoint(lwraz, lwrbz);
 
-    rwrax
-    rwrbx
-    RWristmidx
+    rwrax = get_data_from_rows(coordata,coordatarows,RWRAxcol);
+    rwrbx = get_data_from_rows(coordata,coordatarows,RWRBxcol);
+    RWristmidx = midpoint(rwrax, rwrbx);
 
-    rwray
-    rwrby
-    RWristmidy
+    rwray = get_data_from_rows(coordata,coordatarows,RWRAycol);
+    rwrby = get_data_from_rows(coordata,coordatarows,RWRBycol);
+    RWristmidy = midpoint(rwray, rwrby);
     
-    rwraz
-    rwrbz
-    RWristmidz
-
-    
-    
-% do something else     
-     % for ii = 1:coordatarows % separate individual trajectory columns of interest
-     %    lfinz(ii,1) = coordata(ii, LFINzcol);
-     %    rfinz(ii,1) = coordata(ii, RFINzcol);
-     %    lfinx(ii,1) = coordata(ii, LFINxcol);
-     %    %rfinx(ii,1) = coordata(ii, RFINxcol);
-     %    lshoz(ii,1) = coordata(ii, LSHOzcol);
-     %    rshoz(ii,1) = coordata(ii, RSHOzcol);
-     %    lshox(ii,1) = coordata(ii, LSHOxcol);
-     %    rshox(ii,1) = coordata(ii, RSHOxcol);
-     %    lshoy(ii,1) = coordata(ii, LSHOycol);
-     %    rshoy(ii,1) = coordata(ii, RSHOycol);
-     %    lwraz(ii,1) = coordata(ii, LWRAzcol);
-     %    lwrbz(ii,1) = coordata(ii, LWRBzcol);
-     %    LWristmidz(ii, 1) = ((lwraz(ii,1) + lwrbz(ii,1))/2);
-     %    lwrax(ii,1) = coordata(ii, LWRAxcol);
-     %    lwrbx(ii,1) = coordata(ii, LWRBxcol);
-     %    LWristmidx(ii, 1) = ((lwrax(ii,1) + lwrbx(ii,1))/2);
-     %    lwray(ii,1) = coordata(ii, LWRAycol);
-     %    lwrby(ii,1) = coordata(ii, LWRBycol);
-     %    LWristmidy(ii, 1) = ((lwray(ii,1) + lwrby(ii,1))/2);
-     %    rwraz(ii,1) = coordata(ii, RWRAzcol);
-     %    rwrbz(ii,1) = coordata(ii, RWRBzcol);
-     %    RWristmidz(ii, 1) = ((rwraz(ii,1) + rwrbz(ii,1))/2);
-     %    rwrax(ii,1) = coordata(ii, RWRAxcol);
-     %    rwrbx(ii,1) = coordata(ii, RWRBxcol);
-     %    RWristmidx(ii, 1) = ((rwrax(ii,1) + rwrbx(ii,1))/2);
-     %    rwray(ii,1) = coordata(ii, RWRAycol);
-     %    rwrby(ii,1) = coordata(ii, RWRBycol);
-     %    RWristmidy(ii, 1) = ((rwray(ii,1) + rwrby(ii,1))/2);
+    rwraz = get_data_from_rows(coordata,coordatarows,RWRAzcol);
+    rwrbz = get_data_from_rows(coordata,coordatarows,RWRBzcol);
+    RWristmidz = midpoint(rwraz, rwrbz);
      
         
         
-        % make xyz from the wrist midpoint to the shoulder midpoint 
-        LWrist(ii,1) = LWristmidx(ii,1); 
-        LWrist(ii,2) = LWristmidy(ii,1); 
-        LWrist(ii,3) = LWristmidz(ii,1);
-        RWrist(ii,1) = RWristmidx(ii,1); 
-        RWrist(ii,2) = RWristmidy(ii,1); 
-        RWrist(ii,3) = RWristmidz(ii,1);
-        LShoulder(ii,1) = lshox(ii,1);
-        LShoulder(ii,2) = lshoy(ii,1);
-        LShoulder(ii,3) = lshoz(ii,1);
-        RShoulder(ii,1) = rshox(ii,1);
-        RShoulder(ii,2) = rshoy(ii,1);
-        RShoulder(ii,3) = rshoz(ii,1);
+    % make xyz from the wrist midpoint to the shoulder midpoint
 
-%         LSWvector = Lshoudler - LWrist;
-%         RSWvector = RShoulder - RWrist; 
-        % calculate the distance between the shoulder and wrist markers 
-        Ldist(ii,1) = vector(LShoulder(ii,1), LWrist(ii,1),LShoulder(ii,2), LWrist(ii,2),LShoulder(ii,3), LWrist(ii,3));
-        Rdist(ii,1) = vector(RShoulder(ii,1), RWrist(ii,1),RShoulder(ii,2), RWrist(ii,2),RShoulder(ii,3), RWrist(ii,3));
-%         
-        
-     end
+    
+%         LWrist(ii,1) = LWristmidx(ii,1); 
+%         LWrist(ii,2) = LWristmidy(ii,1); 
+%         LWrist(ii,3) = LWristmidz(ii,1);
+%         RWrist(ii,1) = RWristmidx(ii,1); 
+%         RWrist(ii,2) = RWristmidy(ii,1); 
+%         RWrist(ii,3) = RWristmidz(ii,1);
+%         LShoulder(ii,1) = lshox(ii,1);
+%         LShoulder(ii,2) = lshoy(ii,1);
+%         LShoulder(ii,3) = lshoz(ii,1);
+%         RShoulder(ii,1) = rshox(ii,1);
+%         RShoulder(ii,2) = rshoy(ii,1);
+%         RShoulder(ii,3) = rshoz(ii,1);
+% 
+% %         LSWvector = Lshoudler - LWrist;
+% %         RSWvector = RShoulder - RWrist; 
+%         % calculate the distance between the shoulder and wrist markers 
+%         Ldist(ii,1) = vector(LShoulder(ii,1), LWrist(ii,1),LShoulder(ii,2), LWrist(ii,2),LShoulder(ii,3), LWrist(ii,3));
+%         Rdist(ii,1) = vector(RShoulder(ii,1), RWrist(ii,1),RShoulder(ii,2), RWrist(ii,2),RShoulder(ii,3), RWrist(ii,3));
+% %         
+% 
+%      end
 
      
      
