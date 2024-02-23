@@ -168,30 +168,15 @@ end
         
     % make xyz from the wrist midpoint to the shoulder midpoint
 
+    LWrist = xyz_position_array(LWristmidx,LWristmidy,LWristmidz);
+    RWrist = xyz_position_array(RWristmidx,RWristmidy,RWristmidz);
+    LShoulder = xyz_position_array(lshox,lshoy,lshoz);
+    RShoulder = xyz_position_array(rshox,rshoy,rshoz);
     
-%         LWrist(ii,1) = LWristmidx(ii,1); 
-%         LWrist(ii,2) = LWristmidy(ii,1); 
-%         LWrist(ii,3) = LWristmidz(ii,1);
-%         RWrist(ii,1) = RWristmidx(ii,1); 
-%         RWrist(ii,2) = RWristmidy(ii,1); 
-%         RWrist(ii,3) = RWristmidz(ii,1);
-%         LShoulder(ii,1) = lshox(ii,1);
-%         LShoulder(ii,2) = lshoy(ii,1);
-%         LShoulder(ii,3) = lshoz(ii,1);
-%         RShoulder(ii,1) = rshox(ii,1);
-%         RShoulder(ii,2) = rshoy(ii,1);
-%         RShoulder(ii,3) = rshoz(ii,1);
-% 
-% %         LSWvector = Lshoudler - LWrist;
-% %         RSWvector = RShoulder - RWrist; 
-%         % calculate the distance between the shoulder and wrist markers 
-%         Ldist(ii,1) = vector(LShoulder(ii,1), LWrist(ii,1),LShoulder(ii,2), LWrist(ii,2),LShoulder(ii,3), LWrist(ii,3));
-%         Rdist(ii,1) = vector(RShoulder(ii,1), RWrist(ii,1),RShoulder(ii,2), RWrist(ii,2),RShoulder(ii,3), RWrist(ii,3));
-% %         
-% 
-%      end
-
-     
+    
+    % calculate the distance between the shoulder and wrist markers 
+    Ldist = vector(LShoulder(:,1), LWrist(:,1),LShoulder(:,2), LWrist(:,2),LShoulder(:,3), LWrist(:,3));
+    Rdist = vector(RShoulder(:,1), RWrist(:,1),RShoulder(:,2), RWrist(:,2),RShoulder(:,3), RWrist(:,3));
      
 %     %% 
 % 
